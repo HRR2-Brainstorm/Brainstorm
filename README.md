@@ -3,3 +3,27 @@ Brainstorm
 ==========
 
 brainstorming app
+
+##Getting Started
+
+serve index.js with nodemon (page will reload on server and client files changes)
+
+`gulp`
+
+run *client side* tests automatically whenever files change
+
+`gulp karma-auto`
+
+run server side tests one time
+
+`npm test`
+
+set up automatic jsx compiling on save:
+
+first install react tools (if you have not already may need to run as sudo)
+
+`npm install -g react-tools`
+
+(from root of application)
+
+`jsx /client/react /client/app/react`
