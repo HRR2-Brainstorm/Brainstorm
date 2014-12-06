@@ -2,3 +2,4 @@ node_modules/
 client/lib/
 client/app/react/
 npm-debug.log
+.DS_Store
