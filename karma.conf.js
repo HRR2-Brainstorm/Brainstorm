@@ -17,7 +17,7 @@ module.exports = function(config) {
     files: [
     //lib files
     'client/lib/flux/dist/Flux.js',
-    'client/lib/react/react.js',
+    'client/lib/react/react-with-addons.js',
 
     //app code
     'client/app/**/*.js',
