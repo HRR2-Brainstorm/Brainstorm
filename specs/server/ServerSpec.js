@@ -9,13 +9,13 @@ var url = function(path) {
 };
 
 describe("MongoDB", function() {
-    it("is there a server running", function(next) {
-        var MongoClient = require('mongodb').MongoClient;
-        MongoClient.connect('mongodb://127.0.0.1:27017/brainstormer', function(err, db) {
-            expect(err).to.equal(null);
-            next();
-        });
+  it("is there a server running", function(next) {
+    var MongoClient = require('mongodb').MongoClient;
+    MongoClient.connect('mongodb://127.0.0.1:27017/brainstormer', function(err, db) {
+      expect(err).to.equal(null);
+      next();
     });
+  });
 });
 
 describe('GET /', function() {
