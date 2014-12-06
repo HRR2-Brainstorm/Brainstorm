@@ -24,6 +24,6 @@ first install react tools (if you have not already may need to run as sudo)
 
 `npm install -g react-tools`
 
-(from root of application)
+then run
 
-`jsx /client/react /client/app/react`
+`gulp jsx-auto`
