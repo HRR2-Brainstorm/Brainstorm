@@ -21,6 +21,7 @@
   "homepage": "https://github.com/HRR2-Brainstorm/Brainstorm",
   "devDependencies": {
     "browser-sync": "^1.7.2",
+    "chai": "^1.10.0",
     "expect.js": "^0.3.1",
     "gulp": "^3.8.10",
     "gulp-nodemon": "^1.0.4",
@@ -35,7 +36,8 @@
     "karma-nyan-reporter": "0.0.50",
     "karma-phantomjs-launcher": "^0.1.4",
     "karma-unicorn-reporter": "^0.1.4",
-    "mocha": "^2.0.1"
+    "mocha": "^2.0.1",
+    "request": "^2.49.0"
   },
   "dependencies": {
     "express": "^4.10.4",
