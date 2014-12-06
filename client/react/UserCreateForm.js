@@ -18,5 +18,3 @@ app.UserCreateForm = React.createClass({
     );
   }
 });
-
-React.render(<app.UserCreateForm />, document.getElementById('main'));
