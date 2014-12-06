@@ -8,6 +8,16 @@ var url = function(path) {
   return 'http://localhost:8000' + path;
 };
 
+describe("MongoDB", function() {
+    it("is there a server running", function(next) {
+        var MongoClient = require('mongodb').MongoClient;
+        MongoClient.connect('mongodb://127.0.0.1:27017/brainstormer', function(err, db) {
+            expect(err).to.equal(null);
+            next();
+        });
+    });
+});
+
 describe('GET /', function() {
   it('responds', function(done){
     request(url('/'), function(error, res) {
