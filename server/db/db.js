@@ -1,11 +1,12 @@
 var mongoose    = require('mongoose');
+var db = {};
 
 mongoose.connect('mongodb://localhost/brainstormer');
 var userModel = require('./users/user.server.model.js');
 var ideaModel = require('./ideas/idea.server.model.js');
 var roomModel = require('./rooms/room.server.model.js');
-var mongoose.User = mongoose.model('User');
-var mongoose.Idea = mongoose.model('Idea');
-var mongoose.Room = mongoose.model('Room');
+db.User = mongoose.model('User');
+db.Idea = mongoose.model('Idea');
+db.Room = mongoose.model('Room');
 
-module.exports = mongoose;
+module.exports = db;
