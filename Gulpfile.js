@@ -24,8 +24,7 @@ gulp.task('start', ['serve'], function() {
 });
 
 gulp.task('jsx', shell.task([
-  'jsx ' + __dirname + '/client/react ' + __dirname + '/client/app/react',
-  'rm -r ' + __dirname + '/client/app/react/.module-cache'
+  'jsx ' + __dirname + '/client/react ' + __dirname + '/client/app/react'
 ]));
 
 gulp.task('jsx-auto',function(){
