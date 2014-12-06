@@ -23,6 +23,14 @@ gulp.task('start', ['serve'], function() {
   });
 });
 
+gulp.task('jsx', shell.task([
+  'jsx ' + __dirname + '/client/react ' + __dirname + '/client/app/react'
+]));
+
+gulp.task('jsx-auto',function(){
+  gulp.watch(__dirname + '/client/react/**/*.js',['jsx']);
+});
+
 gulp.task('karma', shell.task([
   'karma start'
 ]));
