@@ -23,6 +23,7 @@
   <script src="lib/underscore/underscore.js"></script>
   <script src="lib/jquery/dist/jquery.js"></script>
   <script src="lib/page/page.js"></script>
+  <script src="lib/socket.io-client/socket.io.js"></script>
 
   <!-- Load App -->
   <script src="app/app.js"></script>
@@ -103,6 +104,11 @@
       React.createElement(app.BrainstormApp, null),
       document.getElementById('main')
     );
+
+    var socket = io.connect(window.location.origin);
+    socket.on('messages', function(data) {
+      console.log(data);
+    });
   </script>
 </body>
 </html>
