@@ -18,3 +18,21 @@ app.IdeaStore = _.extend({}, app.eventEmitter.prototype, {
     this.removeListener(CHANGE_EVENT, callback);
   }
 });
+
+app.AppDispatcher.register(function(payload) {
+  var action = payload.action;
+  var body;
+
+  switch(action.actionType) {
+    case app.IdeaConstants.IDEA_CREATE:
+      body = action.body.trim();
+      if (body !== '') {
+        create(body);
+      }
+      app.IdeaStore.emitChange();
+      break;
+
+    default:
+      return true;
+  }
+});
