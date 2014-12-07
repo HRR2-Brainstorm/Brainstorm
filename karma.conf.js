@@ -20,6 +20,7 @@ module.exports = function(config) {
     'client/lib/react/react-with-addons.js',
 
     //app code
+    'client/app/app.js',
     'client/app/**/*.js',
 
     //spec files
