@@ -23,6 +23,8 @@
   "dependencies": {
     "flux": "~2.0.2",
     "react": "~0.12.1",
-    "page": "~1.5.0"
+    "page": "~1.5.0",
+    "eventEmitter": "~4.2.10",
+    "underscore": "~1.7.0"
   }
 }
