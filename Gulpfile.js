@@ -1,6 +1,7 @@
 'use strict';
 
 var gulp      = require('gulp'),
+    watch     = require('gulp-watch'),
     nodemon   = require('gulp-nodemon'),
     bs        = require('browser-sync'),
     reload    = bs.reload,
@@ -28,8 +29,10 @@ gulp.task('jsx', shell.task([
   'rm -r ' + __dirname + '/client/app/react/.module-cache'
 ]));
 
-gulp.task('jsx-auto',function(){
-  gulp.watch(__dirname + '/client/react/**/*.js',['jsx']);
+gulp.task('jsx-auto', ['jsx'], function(){
+  watch(['client/react/**/*.js'], function(){
+    gulp.start('jsx');
+  });
 });
 
 gulp.task('karma', shell.task([
