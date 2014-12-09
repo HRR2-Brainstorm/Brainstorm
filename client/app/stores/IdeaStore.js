@@ -7,8 +7,8 @@ var create = function(body) {
     url: '/ideas',
     data: {body: body}
   })
-  .done(function(resp) {
-    _ideas.push(resp);
+  .done(function(idea) {
+    _ideas.push(idea);
     app.IdeaStore.emitChange();
   })
   .fail(function(error) {
