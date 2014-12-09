@@ -3,7 +3,8 @@ app.BrainstormApp = React.createClass({
     return (
       <div>
         <app.User />
-        <app.Idea />
+        <app.CreateIdea />
+        <app.Ideas />
       </div>
     );
   }
