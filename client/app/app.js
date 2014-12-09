@@ -1,3 +1,2 @@
 var app = {};
-
-app.eventEmitter = new EventEmitter();
+var CHANGE_EVENT = 'change';

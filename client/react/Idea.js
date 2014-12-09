@@ -1,9 +1,7 @@
 app.Idea = React.createClass({
-  render: function(){
+  render: function() {
     return (
-      <div>
-        <app.IdeaCreateForm />
-      </div>
+      <h3>{this.props.name}</h3>
     );
   }
 });

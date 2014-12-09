@@ -17,4 +17,4 @@ var IdeaSchema = new Schema({
   }
 });
 
-mongoose.model('Idea', IdeaSchema);
+module.exports = mongoose.model('Idea', IdeaSchema);
