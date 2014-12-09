@@ -5,7 +5,6 @@ app.BrainstormApp = React.createClass({
         <app.User />
         <app.CreateIdea />
         <app.Ideas />
-        <app.Idea />
         <app.CreateRoom />
         <app.Rooms />
       </div>
