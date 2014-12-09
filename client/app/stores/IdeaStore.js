@@ -1,24 +1,8 @@
-var CHANGE_EVENT = 'change';
-var _ideas = [];
-
-var create = function(body) {
-  $.ajax({
-    type: 'POST',
-    url: '/ideas',
-    data: {body: body}
-  })
-  .done(function(idea) {
-    _ideas.push(idea);
-    app.IdeaStore.emitChange();
-  })
-  .fail(function(error) {
-    console.log(error);
-  });
-};
-
 app.IdeaStore = _.extend({}, EventEmitter.prototype, {
+  _ideas: [],
+
   getAll: function() {
-    return _ideas;
+    return this._ideas;
   },
 
   all: function() {
@@ -27,12 +11,27 @@ app.IdeaStore = _.extend({}, EventEmitter.prototype, {
       url: '/ideas'
     })
     .done(function(ideas) {
-      _ideas = ideas;
+      this._ideas = ideas;
       this.emitChange();
     }.bind(this))
     .fail(function(error) {
-      console.log(error)
+      console.log(error);
+    });
+  },
+
+  create: function(body) {
+    $.ajax({
+      type: 'POST',
+      url: '/ideas',
+      data: {body: body}
     })
+    .done(function(idea) {
+      this._ideas.push(idea);
+      this.emitChange();
+    }.bind(this))
+    .fail(function(error) {
+      console.log(error);
+    });
   },
 
   emitChange: function() {
@@ -57,7 +56,7 @@ app.AppDispatcher.register(function(payload) {
       body = action.body.trim();
 
       if (body !== '') {
-        create(body);
+        app.IdeaStore.create(body);
       }
       break;
 
