@@ -14,11 +14,11 @@ describe('Idea Form', function(){
   });
 
   it('should render the body', function(){
-    expect(ideaForm.refs.body).to.be.ok();
+    expect(ideaForm.refs.name).to.be.ok();
   });
 
   it('should handle a click', function(){
-    ideaForm.refs.body.getDOMNode().value = 'test';
+    ideaForm.refs.name.getDOMNode().value = 'test';
     TestUtils.Simulate.submit(ideaForm.refs.form.getDOMNode());
     expect(ideaMockAction).to.equal('test');
   });

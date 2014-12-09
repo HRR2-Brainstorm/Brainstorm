@@ -10,7 +10,7 @@ app.Idea = React.createClass({
       if(this.isMounted()) {
         this.setState({editing: false});
       }
-    }.bind(this))
+    }.bind(this));
   },
 
   render: function() {
