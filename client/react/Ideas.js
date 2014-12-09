@@ -20,7 +20,7 @@ app.Ideas = React.createClass({
       ideas.push(<app.Idea name={idea.name} key={idea._id} />);
     });
     return (
-      <div>
+      <div ref="body">
         { ideas }
       </div>
     );

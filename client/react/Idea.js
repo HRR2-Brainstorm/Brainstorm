@@ -1,7 +1,7 @@
 app.Idea = React.createClass({
   render: function() {
     return (
-      <h3>{this.props.name}</h3>
+      <h3 ref="body">{this.props.name}</h3>
     );
   }
 });
