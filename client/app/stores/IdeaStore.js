@@ -1,11 +1,22 @@
 var CHANGE_EVENT = 'change';
-var _ideas = {};
+var _ideas = [];
 
 var create = function(body) {
-
+  $.ajax({
+    type: 'POST',
+    url: '/ideas',
+    data: {body: body}
+  })
+  .done(function(resp) {
+    _ideas.push(resp);
+    app.IdeaStore.emitChange();
+  })
+  .fail(function(error) {
+    console.log(error);
+  });
 };
 
-app.IdeaStore = _.extend({}, app.eventEmitter.prototype, {
+app.IdeaStore = _.extend({}, EventEmitter.prototype, {
   emitChange: function() {
     this.emit(CHANGE_EVENT);
   },
@@ -26,10 +37,10 @@ app.AppDispatcher.register(function(payload) {
   switch(action.actionType) {
     case app.IdeaConstants.IDEA_CREATE:
       body = action.body.trim();
+
       if (body !== '') {
         create(body);
       }
-      app.IdeaStore.emitChange();
       break;
 
     default:
