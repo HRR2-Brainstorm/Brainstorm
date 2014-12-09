@@ -21,5 +21,18 @@ module.exports = {
       .fail(function (error) {
         next(error);
       });
+  },
+
+  allIdeas: function(req, res, next) {
+    var getIdeas = Q.nbind(Idea.find, Idea);
+    getIdeas({})
+    .then(function(allIdeas) {
+      if(allIdeas) {
+        res.json(allIdeas);
+      }
+    })
+    .fail(function(error) {
+      next(error);
+    });
   }
 };
