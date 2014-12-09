@@ -17,6 +17,24 @@ var create = function(body) {
 };
 
 app.IdeaStore = _.extend({}, EventEmitter.prototype, {
+  getAll: function() {
+    return _ideas;
+  },
+
+  all: function() {
+    $.ajax({
+      type: 'GET',
+      url: '/ideas'
+    })
+    .done(function(ideas) {
+      _ideas = ideas;
+      this.emitChange();
+    }.bind(this))
+    .fail(function(error) {
+      console.log(error)
+    })
+  },
+
   emitChange: function() {
     this.emit(CHANGE_EVENT);
   },
