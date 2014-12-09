@@ -11,5 +11,12 @@ app.IdeaActions = {
       actionType: app.IdeaConstants.IDEA_EDIT,
       idea: idea
     });
+  },
+
+  delete: function(idea) {
+    app.AppDispatcher.handleViewAction({
+      actionType: app.IdeaConstants.IDEA_DELETE,
+      idea: idea
+    });
   }
 };

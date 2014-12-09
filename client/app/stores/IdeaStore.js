@@ -15,7 +15,7 @@ app.IdeaStore = _.extend({}, EventEmitter.prototype, {
       this.emitChange();
     }.bind(this))
     .fail(function(error) {
-      console.log(error);
+      console.error(error);
     });
   },
 
@@ -30,7 +30,44 @@ app.IdeaStore = _.extend({}, EventEmitter.prototype, {
       this.emitChange();
     }.bind(this))
     .fail(function(error) {
-      console.log(error);
+      console.error(error);
+    });
+  },
+
+  edit: function(idea) {
+    $.ajax({
+      type: 'PUT',
+      url: '/ideas/' + idea.id,
+      data: idea
+    })
+    .done(function(ideaEdit) {
+      this._ideas.forEach(function(idea) {
+        if(idea._id === ideaEdit._id) {
+          idea.name = ideaEdit.name;
+          return this.emitChange();
+        }
+      }.bind(this));
+    }.bind(this))
+    .fail(function(error) {
+      console.error(error);
+    });
+  },
+
+  delete: function(idea) {
+    $.ajax({
+      type: 'DELETE',
+      url: '/ideas/' + idea.id
+    })
+    .done(function(oldId) {
+      this._ideas.forEach(function(idea, index) {
+        if(idea._id === oldId.id) {
+          this._ideas.splice(index, 1);
+          return this.emitChange();
+        }
+      }.bind(this));
+    }.bind(this))
+    .fail(function(error) {
+      console.error(error);
     });
   },
 
@@ -59,7 +96,16 @@ app.AppDispatcher.register(function(payload) {
         app.IdeaStore.create(name);
       }
       break;
-
+    case app.IdeaConstants.IDEA_EDIT:
+      if(action.idea.name !== '') {
+        app.IdeaStore.edit(action.idea);
+      }
+      break;
+    case app.IdeaConstants.IDEA_DELETE:
+      if(action.idea.id !== '') {
+        app.IdeaStore.delete(action.idea);
+      }
+      break;
     default:
       return true;
   }

@@ -25,14 +25,45 @@ module.exports = {
 
   allIdeas: function(req, res, next) {
     var getIdeas = Q.nbind(Idea.find, Idea);
+
     getIdeas({})
-    .then(function(allIdeas) {
-      if(allIdeas) {
-        res.json(allIdeas);
-      }
-    })
-    .fail(function(error) {
-      next(error);
-    });
+      .then(function(allIdeas) {
+        if(allIdeas) {
+          res.json(allIdeas);
+        }
+      })
+      .fail(function(error) {
+        next(error);
+      });
+  },
+
+  updateIdea: function(req, res, next) {
+    var findIdeaById = Q.nbind(Idea.findById, Idea);
+
+    findIdeaById(req.params.idea_id)
+      .then(function(foundIdea) {
+        if (foundIdea) {
+          foundIdea.name = req.body.name;
+          foundIdea.save(function(err) {
+            if (err) {
+              res.send(err);
+            }
+            res.json(foundIdea);
+          });
+        }
+      });
+  },
+
+  deleteIdea: function(req, res, next) {
+    var removeIdea = Q.nbind(Idea.remove, Idea);
+    removeIdea({_id: req.params.idea_id})
+      .then(function(removedIdea) {
+        if(removedIdea[1].ok) {
+          res.json({
+            message: 'Successfully deleted.',
+            id: req.params.idea_id
+          });
+        }
+      });
   }
 };

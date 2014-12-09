@@ -4,7 +4,9 @@ app.IdeaForm = React.createClass({
     var name = this.refs.name.getDOMNode().value.trim();
 
     if (this.props.editing) {
-      // needs to be implemented!!!!!!!
+      var idea = {id: this.props._id};
+      idea.name = name;
+      app.IdeaActions.edit(idea);
     } else {
       app.IdeaActions.create(name);
     }

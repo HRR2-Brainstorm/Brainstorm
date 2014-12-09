@@ -15,15 +15,15 @@ app.Idea = React.createClass({
 
   render: function() {
     if (this.state.editing) {
-      var editForm = <app.IdeaForm editing="true" name={this.props.name} />
+      var editForm = <app.IdeaForm editing="true" name={this.props.name} key={this.props._id} _id={this.props._id} />
     } else {
-      var editForm = undefined;
+      var editForm = (<button onClick={this.edit}>Edit Idea</button>);
     }
     return (
       <div>
         <h3 ref="body">{this.props.name}</h3>
-        <button onClick={this.edit}>Edit Idea</button>
         {editForm}
+        <button onClick={this.delete}>Delete Idea</button>
       </div>
     );
   },
@@ -32,6 +32,13 @@ app.Idea = React.createClass({
     e.preventDefault();
     if (this.isMounted()) {
       this.setState({editing: !this.state.editing});
+    }
+  },
+
+  delete: function(e) {
+    e.preventDefault();
+    if(this.isMounted()) {
+      app.IdeaActions.delete({id: this.props._id});
     }
   }
 });
