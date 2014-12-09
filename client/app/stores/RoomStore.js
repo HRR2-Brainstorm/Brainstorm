@@ -11,7 +11,7 @@ app.RoomStore = _.extend({}, EventEmitter.prototype, {
       url: '/rooms'
     })
     .done(function(rooms) {
-      this.rooms = rooms;
+      this._rooms = rooms;
       this.emitChange();
     }.bind(this))
     .fail(function(error) {

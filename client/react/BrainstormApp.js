@@ -8,6 +8,7 @@ app.BrainstormApp = React.createClass({
         <app.Idea />
         <app.CreateRoom />
         <app.Rooms />
+        <app.Room />
       </div>
     );
   }
