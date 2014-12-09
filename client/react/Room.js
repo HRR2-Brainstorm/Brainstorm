@@ -1,9 +1,7 @@
 app.Room = React.createClass({
-  render: function(){
+  render: function() {
     return (
-      <div>
-        <app.RoomCreateForm />
-      </div>
+      <h3>{this.props.name}</h3>
     );
   }
 });
