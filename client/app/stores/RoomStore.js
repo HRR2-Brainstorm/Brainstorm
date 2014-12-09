@@ -19,11 +19,11 @@ app.RoomStore = _.extend({}, EventEmitter.prototype, {
     });
   },
 
-  create: function(body) {
+  create: function(name) {
     $.ajax({
       type: 'POST',
       url: '/rooms',
-      data: {body: body}
+      data: {name: name}
     })
     .done(function(room) {
       this._rooms.push(room);
@@ -49,14 +49,14 @@ app.RoomStore = _.extend({}, EventEmitter.prototype, {
 
 app.AppDispatcher.register(function(payload) {
   var action = payload.action;
-  var body;
+  var name;
 
   switch(action.actionType) {
     case app.RoomConstants.ROOM_CREATE:
-      body = action.body.trim();
+      name = action.name.trim();
 
-      if (body !== '') {
-        app.RoomStore.create(body);
+      if (name !== '') {
+        app.RoomStore.create(name);
       }
       break;
 

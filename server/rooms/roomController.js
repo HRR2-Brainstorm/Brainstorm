@@ -5,7 +5,7 @@ module.exports = {
   newRoom: function (req, res, next) {
     var room = {};
 
-    room.name = req.body.body;
+    room.name = req.body.name;
 
     var createRoom = Q.nbind(Room.create, Room);
 
