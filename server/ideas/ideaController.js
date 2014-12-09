@@ -5,7 +5,7 @@ module.exports = {
   newIdea: function (req, res, next) {
     var idea = {};
 
-    idea.name = req.body.body;
+    idea.name = req.body.name;
     // temporary values until this works
     idea.room = '5486357eeadcc15b28af33a6';
     idea.owner = '5486357eeadcc15b28af33a5';

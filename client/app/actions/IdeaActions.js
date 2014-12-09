@@ -1,8 +1,15 @@
 app.IdeaActions = {
-  create: function(body) {
+  create: function(name) {
     app.AppDispatcher.handleViewAction({
       actionType: app.IdeaConstants.IDEA_CREATE,
-      body: body
+      name: name
+    });
+  },
+
+  edit: function(idea) {
+    app.AppDispatcher.handleViewAction({
+      actionType: app.IdeaConstants.IDEA_EDIT,
+      idea: idea
     });
   }
 };

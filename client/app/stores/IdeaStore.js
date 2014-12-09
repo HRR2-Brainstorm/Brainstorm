@@ -19,11 +19,11 @@ app.IdeaStore = _.extend({}, EventEmitter.prototype, {
     });
   },
 
-  create: function(body) {
+  create: function(name) {
     $.ajax({
       type: 'POST',
       url: '/ideas',
-      data: {body: body}
+      data: {name: name}
     })
     .done(function(idea) {
       this._ideas.push(idea);
@@ -49,14 +49,14 @@ app.IdeaStore = _.extend({}, EventEmitter.prototype, {
 
 app.AppDispatcher.register(function(payload) {
   var action = payload.action;
-  var body;
+  var name;
 
   switch(action.actionType) {
     case app.IdeaConstants.IDEA_CREATE:
-      body = action.body.trim();
+      name = action.name.trim();
 
-      if (body !== '') {
-        app.IdeaStore.create(body);
+      if (name !== '') {
+        app.IdeaStore.create(name);
       }
       break;
 

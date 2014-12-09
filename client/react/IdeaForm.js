@@ -1,22 +1,22 @@
 app.IdeaForm = React.createClass({
   handleSubmit: function(e) {
     e.preventDefault();
-    var ideaBody = this.refs.body.getDOMNode();
+    var name = this.refs.name.getDOMNode().value.trim();
 
     if (this.props.editing) {
       // needs to be implemented!!!!!!!
     } else {
-      app.IdeaActions.create(ideaBody.value.trim());
+      app.IdeaActions.create(name);
     }
-    ideaBody.value = '';
+    name.value = '';
     return;
   },
 
   render: function(){
     return (
       <form ref="form" onSubmit={this.handleSubmit}>
-        <input type="text" ref="body" defaultValue={this.props.name} placeholder="Idea" />
-        <input type="submit" ref="submit" value="Create Idea" />
+        <input type="text" ref="name" defaultValue={this.props.name} placeholder="Idea" />
+        <input type="submit" ref="submit" value={this.props.editing ? "Edit Idea" : "Create Idea"} />
       </form>
     );
   }
