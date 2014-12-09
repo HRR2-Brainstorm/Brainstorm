@@ -2,7 +2,7 @@ app.User = React.createClass({
   render: function(){
     return (
       <div>
-        <app.UserCreateForm />
+        <app.UserAuth />
       </div>
     );
   }
