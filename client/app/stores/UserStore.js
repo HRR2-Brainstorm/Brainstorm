@@ -6,7 +6,10 @@ app.UserStore = _.extend({}, EventEmitter.prototype, {
   },
 
   getCurrentUser: function() {
-    $.get('/users')
+    $.ajax({
+      url: '/users',
+      type: 'GET'
+    })
     .done(function(user) {
       this._user = user;
       this.emitChange();
@@ -17,7 +20,10 @@ app.UserStore = _.extend({}, EventEmitter.prototype, {
   },
 
   logout: function() {
-    $.ajax('/users', { type: 'DELETE'})
+    $.ajax({
+      url: '/users',
+      type: 'DELETE'
+    })
     .done(function(user) {
       this._user = user;
       this.emitChange();
