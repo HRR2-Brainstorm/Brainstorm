@@ -1,0 +1,3 @@
+app.PageConstants = {
+  NAVIGATE: 'NAVIGATE'
+};
