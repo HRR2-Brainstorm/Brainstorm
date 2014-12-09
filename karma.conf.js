@@ -18,6 +18,10 @@ module.exports = function(config) {
     //lib files
     'client/lib/flux/dist/Flux.js',
     'client/lib/react/react-with-addons.js',
+    'client/lib/eventEmitter/EventEmitter.js',
+    'client/lib/underscore/underscore.js',
+    'client/lib/jquery/dist/jquery.js',
+    'client/lib/page/page.js',
 
     //app code
     'client/app/app.js',
