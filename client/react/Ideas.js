@@ -1,12 +1,11 @@
 app.Ideas = React.createClass({
-  getInitialState: function() {
+  getInitialState: function () {
     return {
       ideas: app.IdeaStore.getAll()
     };
   },
 
-  componentDidMount: function() {
-    // add a change listener to retrieve all ideas in IdeaStore
+  componentDidMount: function () {
     app.IdeaStore.addChangeListener(function() {
       if(this.isMounted()) {
         this.setState({ ideas: app.IdeaStore.getAll() });

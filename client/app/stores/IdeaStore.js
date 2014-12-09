@@ -1,17 +1,16 @@
 app.IdeaStore = _.extend({}, EventEmitter.prototype, {
   _ideas: [],
 
-  getAll: function() {
+  getAll: function () {
     return this._ideas;
   },
 
-  all: function() {
-    // get all ideas from server
+  all: function () {
     $.ajax({
       type: 'GET',
       url: '/ideas'
     })
-    .done(function(ideas) {
+    .done(function (ideas) {
       this._ideas = ideas;
       // broadcast that _ideas has changed
       this.emitChange();
@@ -21,13 +20,13 @@ app.IdeaStore = _.extend({}, EventEmitter.prototype, {
     });
   },
 
-  create: function(name) {
+  create: function (name) {
     $.ajax({
       type: 'POST',
       url: '/ideas',
       data: {name: name}
     })
-    .done(function(idea) {
+    .done(function (idea) {
       this._ideas.push(idea);
       // broadcast that _ideas has changed
       this.emitChange();
@@ -79,26 +78,26 @@ app.IdeaStore = _.extend({}, EventEmitter.prototype, {
     });
   },
 
-  emitChange: function() {
+  emitChange: function () {
     this.emit(CHANGE_EVENT);
   },
 
-  addChangeListener: function(callback) {
+  addChangeListener: function (callback) {
     this.on(CHANGE_EVENT, callback);
   },
 
-  removeChangeListener: function(callback) {
+  removeChangeListener: function (callback) {
     this.removeListener(CHANGE_EVENT, callback);
   }
 });
 
 // register a callback function with the AppDispatcher
 // that will respond to the IdeaConstants listed below
-app.AppDispatcher.register(function(payload) {
+app.AppDispatcher.register(function (payload) {
   var action = payload.action;
   var name;
 
-  switch(action.actionType) {
+  switch (action.actionType) {
     case app.IdeaConstants.IDEA_CREATE:
       name = action.name.trim();
 

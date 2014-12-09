@@ -3,24 +3,24 @@ app.PageStore = _.extend({}, EventEmitter.prototype, {
   //define routes for PageStore
   routes: {
 
-    welcome: function(){
+    welcome: function () {
       return '/welcome';
     },
 
     //rooms route needs the roomId to route to
-    rooms: function(roomId){
+    rooms: function (roomId) {
       return '/rooms/'+roomId;
     }
 
   },
 
   //dispatch event to render welcome
-  welcome: function(){
+  welcome: function () {
     this.emitChange('welcome');
   },
 
   //dispatch event to render rooms
-  rooms: function(roomId){
+  rooms: function (roomId) {
     this.emitChange('room', roomId);
   },
 
@@ -28,22 +28,22 @@ app.PageStore = _.extend({}, EventEmitter.prototype, {
     this.emit(CHANGE_EVENT);
   },
 
-  addChangeListener: function(callback) {
+  addChangeListener: function (callback) {
     this.on(CHANGE_EVENT, callback);
   },
 
-  removeChangeListener: function(callback) {
+  removeChangeListener: function (callback) {
     this.removeListener(CHANGE_EVENT, callback);
   }
 
 });
 
-app.AppDispatcher.register(function(payload) {
+app.AppDispatcher.register(function (payload) {
   var action = payload.action;
   var body;
 
   //listen for navigate action
-  switch(action.actionType) {
+  switch (action.actionType) {
     case app.PageConstants.NAVIGATE:
 
       //get destination and properties from action

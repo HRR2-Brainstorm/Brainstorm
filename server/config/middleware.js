@@ -2,6 +2,7 @@ var morgan = require('morgan');
 var bodyParser = require('body-parser');
 
 module.exports = function(app, express) {
+  var commentRouter = express.Router();
   var ideaRouter = express.Router();
   var roomRouter = express.Router();
   var userRouter = express.Router();
@@ -18,11 +19,13 @@ module.exports = function(app, express) {
 
   //auth controller must be first to attach user to request
   require('../users/userAuthController.js')(app);
+  app.use('/comments', commentRouter);
   app.use('/ideas', ideaRouter);
   app.use('/rooms', roomRouter);
   app.use('/users', userRouter);
   app.use('/interest', interestRouter);
 
+  require('../comments/commentRoutes.js')(commentRouter);
   require('../ideas/ideaRoutes.js')(ideaRouter);
   require('../rooms/roomRoutes.js')(roomRouter);
   require('../users/userRoutes.js')(userRouter);
