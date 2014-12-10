@@ -8,8 +8,6 @@ app.InterestStore = _.extend({}, EventEmitter.prototype, {
       data: {id: id}
     })
     .done(function(idea) {
-      // this._ideas.push(idea);
-      // this.emitChange();
     }.bind(this))
     .fail(function(error) {
       console.log(error);
