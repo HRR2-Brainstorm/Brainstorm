@@ -54,6 +54,7 @@ app.Idea = React.createClass({
             <button className="button-small pure-button pure-button-primary" onClick={this.edit}>{ this.state.editing ? 'Cancel' : 'Edit Idea'}</button>
             <button className="button-small pure-button pure-button-primary" onClick={this.delete}>Delete Idea</button>
             <button className="button-small pure-button pure-button-primary" onClick={this.addInterest}>Watch</button>
+            <app.Comments idea_id={this.props._id} />
           </form>
         </div>
       );
@@ -61,7 +62,6 @@ app.Idea = React.createClass({
 
     return (
       <div>
-        <button onClick={this.show}>{this.state.displaying? 'Hide' : 'Show'} Idea</button>
         {ideaContent}
       </div>
     );
@@ -70,14 +70,14 @@ app.Idea = React.createClass({
   edit: function(e) {
     e.preventDefault();
     if (this.isMounted()) {
-      this.setState({editing: !this.state.editing});
+      this.setState({ editing: !this.state.editing });
     }
   },
 
   delete: function(e) {
     e.preventDefault();
-    if(this.isMounted()) {
-      app.IdeaActions.delete({id: this.props._id});
+    if (this.isMounted()) {
+      app.IdeaActions.delete({ id: this.props._id });
     }
   }
 });

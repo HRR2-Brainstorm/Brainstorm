@@ -26,6 +26,12 @@ app.CommentStore = _.extend({}, EventEmitter.prototype, {
     }.bind(this));
   },
 
+  get: function(ideaId) {
+    return _.filter(this._comments, function(comment) {
+      return comment.idea_id === ideaId;
+    });
+  },
+
   create: function (idea_id, name) {
     idea_id = idea_id || '5487b6bcd45728763106ce12';
     $.ajax({

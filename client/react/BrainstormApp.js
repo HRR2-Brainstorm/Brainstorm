@@ -11,8 +11,6 @@ app.BrainstormApp = React.createClass({
         <app.User />
         <app.CreateIdea />
         <app.Ideas />
-        <app.CreateComment />
-        <app.Comments />
         <app.CreateRoom />
         <app.Rooms />
       </div>
