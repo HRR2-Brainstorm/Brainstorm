@@ -29,7 +29,7 @@ describe('GET /', function() {
 
 describe('GET /index.html', function() {
   it('responds', function(done){
-    request(url('/indexs.html'), function(error, res) {
+    request(url('/index.html'), function(error, res) {
       expect(res.headers['content-type'].indexOf('html')).to.not.equal(-1);
       done();
     });

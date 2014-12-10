@@ -1,4 +1,5 @@
 app.Idea = React.createClass({
+
   getInitialState: function() {
     // set initial editing state to false
     return {
@@ -34,6 +35,7 @@ app.Idea = React.createClass({
     if (this.state.editing) {
       var editForm = <app.IdeaForm editing="true" name={this.props.name} key={this.props._id} _id={this.props._id} />
     }
+
     return (
       <div>
         <h3 ref="body">{this.props.name}</h3>

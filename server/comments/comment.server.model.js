@@ -3,13 +3,13 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var IdeaSchema = new Schema({
+var CommentSchema = new Schema({
   name: {
     type: String
   },
-  room: {
+  idea: {
     type: Schema.ObjectId,
-    ref: 'Room'
+    ref: 'Idea'
   },
   owner: {
     type: Schema.ObjectId,
@@ -17,4 +17,4 @@ var IdeaSchema = new Schema({
   }
 });
 
-module.exports = mongoose.model('Idea', IdeaSchema);
+module.exports = mongoose.model('Comment', CommentSchema);
