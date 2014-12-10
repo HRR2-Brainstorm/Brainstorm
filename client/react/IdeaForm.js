@@ -21,9 +21,9 @@ app.IdeaForm = React.createClass({
     // if editing the defaultValue will be the idea name
     // if editing an "Edit" button will show otherwise a "Create"
     return (
-      <form ref="form" onSubmit={this.handleSubmit}>
+      <form className="pure-form" ref="form" onSubmit={this.handleSubmit}>
         <input type="text" ref="name" defaultValue={this.props.name} placeholder="Idea" />
-        <input type="submit" ref="submit" value={this.props.editing ? "Edit Idea" : "Create Idea"} />
+        <button className="button-small pure-button pure-button-primary" type="submit" ref="submit" >{this.props.editing ? "Edit Idea" : "Create Idea"}s</button>
       </form>
     );
   }
