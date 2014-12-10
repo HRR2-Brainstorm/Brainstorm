@@ -17,6 +17,18 @@ app.Idea = React.createClass({
     }.bind(this));
   },
 
+  addInterest: function(e){
+    e.preventDefault();
+
+    var ideaId = this.props._id;
+
+    app.InterestActions.add(ideaId);
+
+    // Todo: Change state/class to indicate the interest
+
+    return;
+  },
+
   render: function() {
     // if editing render edit form otherwise render "Edit Idea" button
     if (this.state.editing) {
@@ -28,6 +40,7 @@ app.Idea = React.createClass({
         {editForm}
         <button onClick={this.edit}>{ this.state.editing ? 'Cancel' : 'Edit Idea'}</button>
         <button onClick={this.delete}>Delete Idea</button>
+        <button onClick={this.addInterest}>Watch</button>
       </div>
     );
   },
