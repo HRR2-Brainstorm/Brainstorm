@@ -3,10 +3,37 @@
 <head>
   <meta charset="UTF-8">
   <title>Brainstormer</title>
+  <link rel="stylesheet" href="lib/pure/pure-min.css">
+  <link rel="stylesheet" href="lib/pure/grids-responsive-min.css">
+  <link rel="stylesheet" href="lib/pure/buttons-min.css">
+  <link rel="stylesheet" href="lib/pure/form-min.css">
+  <style>
+
+    html,
+    body {
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      padding:0 1em;
+    }
+
+    #main {
+      max-width:1060px;
+      margin:0 auto;
+    }
+
+    .pure-button {
+      margin-right:1em;
+    }
+  </style>
 </head>
 <body>
-Future Site of Brainstormer
-  <div id="main"></div>
+  <div class="pure-g">
+    <div id="main" class="pure-u-1">
+      Future Site of Brainstormer
+    </div>
+  </div>
 
   <!-- Libraries -->
   <script src="lib/flux/dist/Flux.js"></script>
