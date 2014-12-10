@@ -6,7 +6,12 @@ var gulp      = require('gulp'),
     bs        = require('browser-sync'),
     reload    = bs.reload,
     karma     = require('karma').server,
-    shell     = require('gulp-shell');
+    shell     = require('gulp-shell'),
+    usemin    = require('gulp-usemin'),
+    uglify    = require('gulp-uglify'),
+    minifyHtml = require('gulp-minify-html'),
+    minifyCss = require('gulp-minify-css'),
+    rev       = require('gulp-rev');
 
 var paths = {
   scripts: ['client/app/**/*.js'],
@@ -29,8 +34,8 @@ gulp.task('jsx', shell.task([
   'rm -r ' + __dirname + '/client/app/react/.module-cache'
 ]));
 
-gulp.task('jsx-auto', ['jsx'], function(){
-  watch(['client/react/**/*.js'], function(){
+gulp.task('jsx-auto', ['jsx'], function () {
+  watch(['client/react/**/*.js'], function () {
     gulp.start('jsx');
   });
 });
@@ -39,7 +44,7 @@ gulp.task('karma', shell.task([
   'karma start'
 ]));
 
-gulp.task('karma-auto', function(done){
+gulp.task('karma-auto', function (done) {
   karma.start({
     configFile: __dirname + '/karma.conf.js',
     autoWatch: true,
@@ -55,8 +60,26 @@ gulp.task('e2e', shell.task([
   'protractor e2e/conf.js'
 ]));
 
-gulp.task('serve', function() {
+gulp.task('serve', function () {
   nodemon({script: 'index.js', ignore: 'node_modules/**/*.js'});
+});
+
+gulp.task('clearProd', shell.task([
+  'rm -r production/'
+]));
+
+gulp.task('usemin', ['jsx', 'clearProd'], function () {
+  gulp.src('./client/index.html')
+    .pipe(usemin({
+      css: [minifyCss(), 'concat'],
+      html: [minifyHtml({empty: true})],
+      js: [uglify(), rev()]
+    }))
+    .pipe(gulp.dest('production/'));
+});
+
+gulp.task('production', ['usemin'], function () {
+  nodemon({script: 'productionIndex.js', ignore: 'node_modules/**/*.js'});
 });
 
 gulp.task('default', ['start']);

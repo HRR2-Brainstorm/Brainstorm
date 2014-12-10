@@ -35,7 +35,8 @@ module.exports = function(config) {
 
     // list of files to exclude
     exclude: [
-      'karma.conf.js'
+      'karma.conf.js',
+      'client/app/starter.js'
     ],
 
 
