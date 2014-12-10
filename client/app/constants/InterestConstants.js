@@ -1,3 +1,3 @@
 app.InterestConstants = {
-  INTEREST_ADD: 'INTEREST_ADD'
+  INTEREST_CREATE: 'INTEREST_CREATE'
 };
