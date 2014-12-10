@@ -4,7 +4,7 @@ var Q = require('q');
 module.exports = {
   add: function (req, res, next) {
     var interest = {};
-    interest.idea = req.body.id;
+    interest.idea = req.body.ideaId;
     interest.user = req.user._id;
 
     var addInterest = Q.nbind(Interests.create, Interests);

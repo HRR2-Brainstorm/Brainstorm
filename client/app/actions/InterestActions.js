@@ -1,8 +1,8 @@
 app.InterestActions = {
-  add: function(id) {
+  add: function(ideaId) {
     app.AppDispatcher.handleViewAction({
       actionType: app.InterestConstants.INTEREST_CREATE,
-      id: id
+      ideaId: ideaId
     });
   }
 };

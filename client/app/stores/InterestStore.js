@@ -1,11 +1,11 @@
 app.InterestStore = _.extend({}, EventEmitter.prototype, {
   _interests: [],
 
-  add: function(id) {
+  add: function(ideaId) {
     $.ajax({
       type: 'POST',
       url: '/interests',
-      data: {id: id}
+      data: {ideaId: ideaId}
     })
     .done(function(idea) {
     }.bind(this))
@@ -32,10 +32,10 @@ app.AppDispatcher.register(function(payload) {
 
   switch(action.actionType) {
     case app.InterestConstants.INTEREST_CREATE:
-      id = action.id;
+      ideaId = action.ideaId;
 
-      if (id !== '') {
-        app.InterestStore.add(id);
+      if (ideaId !== '') {
+        app.InterestStore.add(ideaId);
       }
       break;
 
