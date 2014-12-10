@@ -41,7 +41,7 @@ app.Idea = React.createClass({
         {editForm}
         <button onClick={this.edit}>{ this.state.editing ? 'Cancel' : 'Edit Idea'}</button>
         <button onClick={this.delete}>Delete Idea</button>
-		<a href="#" onClick={this.addInterest}>#</a>
+		    <button onClick={this.addInterest}>Watch</button>
       </div>
     );
   },
