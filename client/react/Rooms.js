@@ -17,7 +17,7 @@ app.Rooms = React.createClass({
   render: function() {
     var rooms = [];
     this.state.rooms.forEach(function(room) {
-      rooms.push(<app.Room name={room.name} key={room._id} />);
+      rooms.push(<app.Room name={room.name} key={room._id} _id={room._id} />);
     });
     return (
       <div>
