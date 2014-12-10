@@ -1,20 +1,25 @@
 app.IdeaForm = React.createClass({
   handleSubmit: function(e) {
     e.preventDefault();
+    // get the value out of the input with ref="name"
     var name = this.refs.name.getDOMNode().value.trim();
 
+    // if editing send info to edit method in IdeaActions
     if (this.props.editing) {
       var idea = {id: this.props._id};
       idea.name = name;
       app.IdeaActions.edit(idea);
-    } else {
+    } else { // else an idea is being created
       app.IdeaActions.create(name);
     }
+    // clear the value in the input
     name.value = '';
     return;
   },
 
   render: function(){
+    // if editing the defaultValue will be the idea name
+    // if editing an "Edit" button will show otherwise a "Create"
     return (
       <form ref="form" onSubmit={this.handleSubmit}>
         <input type="text" ref="name" defaultValue={this.props.name} placeholder="Idea" />

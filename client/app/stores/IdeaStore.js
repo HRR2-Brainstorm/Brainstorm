@@ -6,12 +6,14 @@ app.IdeaStore = _.extend({}, EventEmitter.prototype, {
   },
 
   all: function() {
+    // get all ideas from server
     $.ajax({
       type: 'GET',
       url: '/ideas'
     })
     .done(function(ideas) {
       this._ideas = ideas;
+      // broadcast that _ideas has changed
       this.emitChange();
     }.bind(this))
     .fail(function(error) {
@@ -27,6 +29,7 @@ app.IdeaStore = _.extend({}, EventEmitter.prototype, {
     })
     .done(function(idea) {
       this._ideas.push(idea);
+      // broadcast that _ideas has changed
       this.emitChange();
     }.bind(this))
     .fail(function(error) {
@@ -41,9 +44,12 @@ app.IdeaStore = _.extend({}, EventEmitter.prototype, {
       data: idea
     })
     .done(function(ideaEdit) {
+      // look through the ideas until finding a match
+      // for id and then update the name property
       this._ideas.forEach(function(idea) {
         if(idea._id === ideaEdit._id) {
           idea.name = ideaEdit.name;
+          // broadcast that _ideas has changed
           return this.emitChange();
         }
       }.bind(this));
@@ -59,9 +65,11 @@ app.IdeaStore = _.extend({}, EventEmitter.prototype, {
       url: '/ideas/' + idea.id
     })
     .done(function(oldId) {
+      // find deleted idea by oldId in _ideas and remove
       this._ideas.forEach(function(idea, index) {
         if(idea._id === oldId.id) {
           this._ideas.splice(index, 1);
+          // broadcast that _ideas has changed
           return this.emitChange();
         }
       }.bind(this));
@@ -84,6 +92,8 @@ app.IdeaStore = _.extend({}, EventEmitter.prototype, {
   }
 });
 
+// register a callback function with the AppDispatcher
+// that will respond to the IdeaConstants listed below
 app.AppDispatcher.register(function(payload) {
   var action = payload.action;
   var name;

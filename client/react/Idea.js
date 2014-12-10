@@ -1,11 +1,15 @@
 app.Idea = React.createClass({
   getInitialState: function() {
+    // set initial editing state to false
     return {
       editing: false
     };
   },
 
   componentDidMount: function() {
+    // add a change listener on the IdeaStore
+    // this is needed when the edit comes back and emits a change
+    // that will force the component to re-render
     app.IdeaStore.addChangeListener(function() {
       if(this.isMounted()) {
         this.setState({editing: false});
@@ -14,6 +18,7 @@ app.Idea = React.createClass({
   },
 
   render: function() {
+    // if editing render edit form otherwise render "Edit Idea" button
     if (this.state.editing) {
       var editForm = <app.IdeaForm editing="true" name={this.props.name} key={this.props._id} _id={this.props._id} />
     } else {
