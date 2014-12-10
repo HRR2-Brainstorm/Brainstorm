@@ -77,7 +77,7 @@ module.exports = {
         if(removedIdea[1].ok) {
           res.json({
             message: 'Successfully deleted.',
-            id: req.params.idea_id
+            _id: req.params.idea_id
           });
         }
       })

@@ -67,7 +67,7 @@ app.IdeaStore = _.extend({}, EventEmitter.prototype, {
     .done(function(oldId) {
       // find deleted idea by oldId in _ideas and remove
       this._ideas.forEach(function(idea, index) {
-        if(idea._id === oldId.id) {
+        if(idea._id === oldId._id) {
           this._ideas.splice(index, 1);
           // broadcast that _ideas has changed
           return this.emitChange();
