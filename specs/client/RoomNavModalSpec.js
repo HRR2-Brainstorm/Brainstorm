@@ -4,13 +4,21 @@ describe('RoomNavModal', function(){
 
   beforeEach(function(){
     TestUtils = React.addons.TestUtils;
-    roomNavModal = React.createElement(app.RoomNavModal, {roomId: '0'});
     holder = app.PageActions;
     app.PageActions = {
       navigate: function(body){
         roomMockAction = body;
       }
     };
+    roomNavModal = React.createElement(app.RoomNavModal, {
+      roomId: '0',
+      handleClick: function () {
+        app.PageActions.navigate({
+          dest: 'rooms',
+          props: '0'
+        });
+      }
+    });
     roomNavModal = TestUtils.renderIntoDocument(roomNavModal);
   });
 
