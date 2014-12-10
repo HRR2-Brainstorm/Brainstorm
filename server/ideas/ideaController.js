@@ -6,9 +6,8 @@ module.exports = {
     var idea = {};
 
     idea.name = req.body.name;
-    // temporary values until this works
-    idea.room = '5486357eeadcc15b28af33a6';
-    idea.owner = '5486357eeadcc15b28af33a5';
+    idea.room = req.params.room_id;
+    idea.owner = req.user._id;
 
     // create promise for Idea.create method
     var createIdea = Q.nbind(Idea.create, Idea);
@@ -29,9 +28,9 @@ module.exports = {
   allIdeas: function(req, res, next) {
     // create promise for Idea.find
     var getIdeas = Q.nbind(Idea.find, Idea);
-
+    var query = req.params.room_id ? { room: req.params.room_id } : {};
     // get all ideas
-    getIdeas({})
+    getIdeas(query)
       .then(function(allIdeas) {
         // if there are ideas send them in response
         if(allIdeas) {

@@ -1,7 +1,7 @@
 app.PageView = React.createClass({
 
   getInitialState: function(){
-    return app.PageStore.currentRoute;
+    return app.PageStore.currentRoute || {dest: 'welcome'};
   },
 
   componentDidMount: function(){

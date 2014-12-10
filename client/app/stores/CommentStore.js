@@ -5,12 +5,36 @@ app.CommentStore = _.extend({}, EventEmitter.prototype, {
     return app.PageStore.currentRoute.props;
   },
 
-  getAll: function () {
-    return this._comments;
+  getAll: function (idea_id) {
+    if (!idea_id) return this._comments;
+    return _(this._comments).filter(function (comment) {
+      return comment.idea === idea_id;
+    });
   },
 
   //ajax requests
   //TODO: DRY out this code
+
+  get: function (room_id) {
+    $.ajax({
+      type: 'GET',
+      url: '/comments/' + room_id,
+    })
+    .done(function (comments) {
+      this._comments = comments;
+      // broadcast that _ideas has changed
+      this.emitChange();
+    }.bind(this))
+    .fail(function(error) {
+      console.error(error);
+    });
+
+    socket.on('comment-change', function(currentComments) {
+      this._comments = currentComments;
+      this.emitChange();
+    }.bind(this));
+  },
+
   all: function () {
     $.ajax({
       type: 'GET',
@@ -30,19 +54,11 @@ app.CommentStore = _.extend({}, EventEmitter.prototype, {
     }.bind(this));
   },
 
-  get: function(ideaId) {
-    return _.filter(this._comments, function(comment) {
-      return comment.idea_id === ideaId;
-    });
-  },
-
   create: function (idea_id, name) {
-    idea_id = idea_id || '5487b6bcd45728763106ce12';
     $.ajax({
       type: 'POST',
-      url: '/comments',
+      url: '/comments/' + idea_id,
       data: {
-        idea_id: idea_id,
         name: name
       }
     })
@@ -152,6 +168,12 @@ app.AppDispatcher.register(function (payload) {
       _id = action._id;
 
       app.CommentStore.delete(_id);
+      break;
+
+    case app.PageConstants.GETROOMDATA:
+      if (action.room_id){
+        app.CommentStore.get(action.room_id);
+      }
       break;
 
     default:

@@ -8,7 +8,7 @@ var InterestSchema = new Schema({
     type: Schema.ObjectId,
     ref: 'Idea'
   },
-  user: {
+  owner: {
     type: Schema.ObjectId,
     ref: 'User'
   }

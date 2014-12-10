@@ -3,7 +3,7 @@ app.Comments = React.createClass({
   getInitialState: function () {
     return {
       displaying: false,
-      comments: app.CommentStore.get(this.props.idea_id)
+      comments: app.CommentStore.getAll(this.props.idea_id)
     };
   },
 
@@ -11,7 +11,7 @@ app.Comments = React.createClass({
   componentDidMount: function () {
     app.CommentStore.addChangeListener(function () {
       if (this.isMounted()) {
-        this.setState({ comments: app.CommentStore.get(this.props.idea_id) });
+        this.setState({ comments: app.CommentStore.getAll(this.props.idea_id) });
       }
     }.bind(this));
   },
