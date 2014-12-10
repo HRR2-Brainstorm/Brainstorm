@@ -29,10 +29,10 @@ app.InterestStore = _.extend({}, EventEmitter.prototype, {
 
 app.AppDispatcher.register(function(payload) {
   var action = payload.action;
+  var ideaId = action.ideaId;
 
   switch(action.actionType) {
     case app.InterestConstants.INTEREST_CREATE:
-      ideaId = action.ideaId;
 
       if (ideaId !== '') {
         app.InterestStore.add(ideaId);
