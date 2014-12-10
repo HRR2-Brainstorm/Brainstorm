@@ -7,8 +7,12 @@ module.exports = function(app, express) {
   var userRouter = express.Router();
 
   app.use(morgan('dev'));
+  // Returns middleware that only parses urlencoded bodies
+  // and parses extended syntax with qs module
   app.use(bodyParser.urlencoded({extended: true}));
+  // bodyParser.json() returns middleware that only parses json
   app.use(bodyParser.json());
+  // use express to serve statis assets
   app.use(express.static(__dirname + '/../../client'));
 
   //auth controller must be first to attach user to request
