@@ -3,7 +3,7 @@ app.Comments = React.createClass({
   getInitialState: function () {
     return {
       displaying: false,
-      comments: app.CommentStore.getAll()
+      comments: app.CommentStore.get(this.props.idea_id)
     };
   },
 
@@ -11,7 +11,7 @@ app.Comments = React.createClass({
   componentDidMount: function () {
     app.CommentStore.addChangeListener(function () {
       if (this.isMounted()) {
-        this.setState({ comments: app.CommentStore.getAll() });
+        this.setState({ comments: app.CommentStore.get(this.props.idea_id) });
       }
     }.bind(this));
   },
@@ -25,26 +25,27 @@ app.Comments = React.createClass({
   //render a comment component for each comment
   render: function () {
     var comments;
+    var commentForm;
     var showCommentsButton;
     //display comments if we are displaying, otherwise show buttons
     if (this.state.displaying){
+      commentForm = <app.CommentForm idea_id={this.props.idea_id} />
       comments = [];
       //render a comment component for each comment
       this.state.comments.forEach(function (comment) {
         comments.push(
-          <app.Comment name={comment.name} key={comment._id} _id={comment._id} />
+          <app.Comment name={comment.name} key={comment._id} _id={comment._id} idea_id={comment.idea_id} />
         );
       });
     }
 
-    //only show comments button if there are comments to show
-    if (this.state.comments.length){
-      showCommentsButton = <button onClick={this.show}>{this.state.displaying? 'Hide' : 'Show'} Comments</button>
-    }
+    showCommentsButton = <button onClick={this.show}>{this.state.displaying? 'Hide' : 'Show'} Comments</button>
+
     return (
       <div ref="body">
         { showCommentsButton }
         { comments }
+        { commentForm }
       </div>
     );
   }
