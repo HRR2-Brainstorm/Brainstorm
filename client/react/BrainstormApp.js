@@ -15,6 +15,10 @@ app.BrainstormApp = React.createClass({
       state.props = state.props || '';
       state.indexView = (state.dest === 'welcome' ? true : false);
       this.setState(state);
+
+      if(!state.indexView) {
+        socket.emit('join', state.props);
+      }
     }.bind(this));
   },
 

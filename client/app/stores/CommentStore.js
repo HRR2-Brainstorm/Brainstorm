@@ -1,6 +1,10 @@
 app.CommentStore = _.extend({}, EventEmitter.prototype, {
   _comments: [],
 
+  _room: function() {
+    return app.PageStore.currentRoute.props;
+  },
+
   getAll: function () {
     return this._comments;
   },
@@ -46,7 +50,7 @@ app.CommentStore = _.extend({}, EventEmitter.prototype, {
       this._comments.push(comment);
 
       // broadcast that _comments has changed
-      socket.emit('comment-change', this._comments);
+      socket.emit('comment-change', this._comments, this._room());
       this.emitChange();
     }.bind(this))
     .fail(function (error) {
@@ -71,7 +75,7 @@ app.CommentStore = _.extend({}, EventEmitter.prototype, {
       }.bind(this));
 
       // broadcast that _comments has changed
-      socket.emit('comment-change', this._comments);
+      socket.emit('comment-change', this._comments, this._room());
       this.emitChange();
     }.bind(this))
     .fail(function (error) {
@@ -93,7 +97,7 @@ app.CommentStore = _.extend({}, EventEmitter.prototype, {
       }.bind(this));
 
       // broadcast that _comments has changed
-      socket.emit('comment-change', this._comments);
+      socket.emit('comment-change', this._comments, this._room());
       this.emitChange();
     }.bind(this))
     .fail(function (error) {
