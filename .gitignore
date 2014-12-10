@@ -1,6 +1,7 @@
 node_modules/
 client/lib/
 client/app/react/
+production/
 npm-debug.log
 .DS_Store
 .floo
