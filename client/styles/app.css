@@ -1,0 +1,21 @@
+html,
+body {
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  padding:0 1em;
+}
+
+#main {
+  max-width:1060px;
+  margin:0 auto;
+}
+
+form .pure-button:not(:first-of-type) {
+  margin-left:1em;
+}
+
+form .pure-button:last-of-type {
+  margin-left:1em;
+}
