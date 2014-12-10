@@ -3,3 +3,5 @@ client/lib/
 client/app/react/
 npm-debug.log
 .DS_Store
+.floo
+.flooignore

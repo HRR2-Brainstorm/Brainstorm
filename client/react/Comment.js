@@ -21,9 +21,11 @@ app.Comment = React.createClass({
     return (
       <div>
         <h3 ref="body">{this.props.name}</h3>
-        {editForm}
-        <button onClick={this.edit}>{ this.state.editing ? 'Cancel' : 'Edit Comment'}</button>
-        <button onClick={this.delete}>Delete Comment</button>
+        <form className="pure-form" >
+          {editForm}
+          <button onClick={this.edit}>{ this.state.editing ? 'Cancel' : 'Edit Comment'}</button>
+          <button onClick={this.delete}>Delete Comment</button>
+        </form>
       </div>
     );
   },

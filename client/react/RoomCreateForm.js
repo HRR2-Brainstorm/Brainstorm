@@ -11,9 +11,9 @@ app.RoomCreateForm = React.createClass({
 
   render: function(){
     return (
-      <form ref="form" onSubmit={this.handleSubmit}>
+      <form className="pure-form pure-g" ref="form" onSubmit={this.handleSubmit}>
         <input type="text" ref="name" placeholder="Room" />
-        <input type="submit" ref="submit" value="Create Room" />
+        <button className="button-small pure-button pure-button-primary" type="submit" ref="submit" >Create Room</button>
       </form>
     );
   }
