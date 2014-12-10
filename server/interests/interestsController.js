@@ -10,7 +10,6 @@ module.exports = {
     var addInterest = Q.nbind(Interests.create, Interests);
 
     addInterest(interest)
-
       .then(function (addedInterest) {
         if (addedInterest) {
           res.json(addedInterest);
