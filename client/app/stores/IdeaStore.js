@@ -3,6 +3,10 @@ var socket = io.connect();
 app.IdeaStore = _.extend({}, EventEmitter.prototype, {
   _ideas: [],
 
+  _room: function() {
+    return app.PageStore.currentRoute.props;
+  },
+
   getAll: function() {
     return this._ideas;
   },
@@ -37,7 +41,7 @@ app.IdeaStore = _.extend({}, EventEmitter.prototype, {
       this._ideas.push(idea);
 
       // broadcast that _ideas has changed
-      socket.emit('idea-change', this._ideas);
+      socket.emit('idea-change', this._ideas, this._room());
       this.emitChange();
     }.bind(this))
     .fail(function(error) {
@@ -59,7 +63,7 @@ app.IdeaStore = _.extend({}, EventEmitter.prototype, {
           idea.name = ideaEdit.name;
 
           // broadcast that _ideas has changed
-          socket.emit('idea-change', this._ideas);
+          socket.emit('idea-change', this._ideas, this._room());
           return this.emitChange();
         }
       }.bind(this));
@@ -81,7 +85,7 @@ app.IdeaStore = _.extend({}, EventEmitter.prototype, {
           this._ideas.splice(index, 1);
 
           // broadcast that _ideas has changed
-          socket.emit('idea-change', this._ideas);
+          socket.emit('idea-change', this._ideas, this._room());
           return this.emitChange();
         }
       }.bind(this));
