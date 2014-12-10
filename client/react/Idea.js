@@ -54,7 +54,7 @@ app.Idea = React.createClass({
             <button className="button-small pure-button pure-button-primary" onClick={this.edit}>{ this.state.editing ? 'Cancel' : 'Edit Idea'}</button>
             <button className="button-small pure-button pure-button-primary" onClick={this.delete}>Delete Idea</button>
             <button className="button-small pure-button pure-button-primary" onClick={this.addInterest}>Watch</button>
-            <app.Comments idea_id={idea_id} />
+            <app.Comments idea_id={this.props._id} />
           </form>
         </div>
       );
