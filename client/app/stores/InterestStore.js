@@ -34,7 +34,7 @@ app.AppDispatcher.register(function(payload) {
 
   switch(action.actionType) {
     case app.InterestConstants.INTEREST_CREATE:
-      id = action.id.trim();
+      id = action.id;
 
       if (id !== '') {
         app.InterestStore.add(id);
