@@ -21,13 +21,12 @@ app.Idea = React.createClass({
     // if editing render edit form otherwise render "Edit Idea" button
     if (this.state.editing) {
       var editForm = <app.IdeaForm editing="true" name={this.props.name} key={this.props._id} _id={this.props._id} />
-    } else {
-      var editForm = (<button onClick={this.edit}>Edit Idea</button>);
     }
     return (
       <div>
         <h3 ref="body">{this.props.name}</h3>
         {editForm}
+        <button onClick={this.edit}>{ this.state.editing ? 'Cancel' : 'Edit Idea'}</button>
         <button onClick={this.delete}>Delete Idea</button>
       </div>
     );
