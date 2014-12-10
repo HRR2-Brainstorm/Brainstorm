@@ -1,7 +1,9 @@
+var socket = io.connect();
+
 app.IdeaStore = _.extend({}, EventEmitter.prototype, {
   _ideas: [],
 
-  getAll: function () {
+  getAll: function() {
     return this._ideas;
   },
 
@@ -18,6 +20,11 @@ app.IdeaStore = _.extend({}, EventEmitter.prototype, {
     .fail(function(error) {
       console.error(error);
     });
+
+    socket.on('idea-change', function(currentIdeas) {
+      this._ideas = currentIdeas;
+      this.emitChange();
+    }.bind(this));
   },
 
   create: function (name) {
@@ -28,7 +35,9 @@ app.IdeaStore = _.extend({}, EventEmitter.prototype, {
     })
     .done(function (idea) {
       this._ideas.push(idea);
+
       // broadcast that _ideas has changed
+      socket.emit('idea-change', this._ideas);
       this.emitChange();
     }.bind(this))
     .fail(function(error) {
@@ -48,7 +57,9 @@ app.IdeaStore = _.extend({}, EventEmitter.prototype, {
       this._ideas.forEach(function(idea) {
         if(idea._id === ideaEdit._id) {
           idea.name = ideaEdit.name;
+
           // broadcast that _ideas has changed
+          socket.emit('idea-change', this._ideas);
           return this.emitChange();
         }
       }.bind(this));
@@ -68,7 +79,9 @@ app.IdeaStore = _.extend({}, EventEmitter.prototype, {
       this._ideas.forEach(function(idea, index) {
         if(idea._id === oldId._id) {
           this._ideas.splice(index, 1);
+
           // broadcast that _ideas has changed
+          socket.emit('idea-change', this._ideas);
           return this.emitChange();
         }
       }.bind(this));

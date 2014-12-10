@@ -19,6 +19,11 @@ app.CommentStore = _.extend({}, EventEmitter.prototype, {
     .fail(function (error) {
       console.log(error);
     });
+
+    socket.on('comment-change', function(currentComments) {
+      this._comments = currentComments;
+      this.emitChange();
+    }.bind(this));
   },
 
   create: function (idea_id, name) {
@@ -33,6 +38,9 @@ app.CommentStore = _.extend({}, EventEmitter.prototype, {
     })
     .done(function (comment) {
       this._comments.push(comment);
+
+      // broadcast that _comments has changed
+      socket.emit('comment-change', this._comments);
       this.emitChange();
     }.bind(this))
     .fail(function (error) {
@@ -56,7 +64,8 @@ app.CommentStore = _.extend({}, EventEmitter.prototype, {
         }
       }.bind(this));
 
-      //emit update
+      // broadcast that _comments has changed
+      socket.emit('comment-change', this._comments);
       this.emitChange();
     }.bind(this))
     .fail(function (error) {
@@ -77,7 +86,8 @@ app.CommentStore = _.extend({}, EventEmitter.prototype, {
         }
       }.bind(this));
 
-      //emit change
+      // broadcast that _comments has changed
+      socket.emit('comment-change', this._comments);
       this.emitChange();
     }.bind(this))
     .fail(function (error) {
