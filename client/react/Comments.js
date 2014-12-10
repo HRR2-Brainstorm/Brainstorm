@@ -2,6 +2,7 @@ app.Comments = React.createClass({
   //get all loaded comments
   getInitialState: function () {
     return {
+      displaying: false,
       comments: app.CommentStore.getAll()
     };
   },
@@ -15,16 +16,34 @@ app.Comments = React.createClass({
     }.bind(this));
   },
 
+  show: function () {
+    if (this.isMounted()) {
+      this.setState({ displaying: !this.state.displaying });
+    }
+  },
+
   //render a comment component for each comment
   render: function () {
-    var comments = [];
-    this.state.comments.forEach(function (comment) {
-      comments.push(
-        <app.Comment name={comment.name} key={comment._id} _id={comment._id} />
-      );
-    });
+    var comments;
+    var showCommentsButton;
+    //display comments if we are displaying, otherwise show buttons
+    if (this.state.displaying){
+      comments = [];
+      //render a comment component for each comment
+      this.state.comments.forEach(function (comment) {
+        comments.push(
+          <app.Comment name={comment.name} key={comment._id} _id={comment._id} />
+        );
+      });
+    }
+
+    //only show comments button if there are comments to show
+    if (this.state.comments.length){
+      showCommentsButton = <button onClick={this.show}>{this.state.displaying? 'Hide' : 'Show'} Comments</button>
+    }
     return (
       <div ref="body">
+        { showCommentsButton }
         { comments }
       </div>
     );

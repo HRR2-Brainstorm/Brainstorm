@@ -3,6 +3,7 @@ app.Idea = React.createClass({
   getInitialState: function() {
     // set initial editing state to false
     return {
+      displaying: true,
       editing: false
     };
   },
@@ -18,6 +19,12 @@ app.Idea = React.createClass({
     }.bind(this));
   },
 
+  show: function () {
+    if (this.isMounted()) {
+      this.setState({ displaying: !this.state.displaying });
+    }
+  },
+
   addInterest: function(e){
     e.preventDefault();
 
@@ -31,20 +38,31 @@ app.Idea = React.createClass({
   },
 
   render: function() {
+    var ideaContent;
+    var editForm;
     // if editing render edit form otherwise render "Edit Idea" button
     if (this.state.editing) {
-      var editForm = <app.IdeaForm editing="true" name={this.props.name} key={this.props._id} _id={this.props._id} />
+      editForm = <app.IdeaForm editing="true" name={this.props.name} key={this.props._id} _id={this.props._id} />
+    }
+
+    if (this.state.displaying) {
+      ideaContent = (
+        <div>
+          <h3 ref="body">{this.props.name}</h3>
+          <form className="pure-form" >
+            {editForm}
+            <button className="button-small pure-button pure-button-primary" onClick={this.edit}>{ this.state.editing ? 'Cancel' : 'Edit Idea'}</button>
+            <button className="button-small pure-button pure-button-primary" onClick={this.delete}>Delete Idea</button>
+            <button className="button-small pure-button pure-button-primary" onClick={this.addInterest}>Watch</button>
+          </form>
+        </div>
+      );
     }
 
     return (
       <div>
-        <h3 ref="body">{this.props.name}</h3>
-        <form className="pure-form" >
-          {editForm}
-          <button className="button-small pure-button pure-button-primary" onClick={this.edit}>{ this.state.editing ? 'Cancel' : 'Edit Idea'}</button>
-          <button className="button-small pure-button pure-button-primary" onClick={this.delete}>Delete Idea</button>
-          <button className="button-small pure-button pure-button-primary" onClick={this.addInterest}>Watch</button>
-        </form>
+        <button onClick={this.show}>{this.state.displaying? 'Hide' : 'Show'} Idea</button>
+        {ideaContent}
       </div>
     );
   },
