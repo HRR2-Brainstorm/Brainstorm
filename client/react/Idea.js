@@ -30,6 +30,19 @@ app.Idea = React.createClass({
     return;
   },
 
+
+  addInterest: function(e){
+    e.preventDefault();
+
+    var ideaId = this.props._id;
+
+    app.InterestActions.add(ideaId);
+
+    // Todo: Change state/class to indicate the interest
+
+    return;
+  },
+
   render: function() {
     // if editing render edit form otherwise render "Edit Idea" button
     if (this.state.editing) {
