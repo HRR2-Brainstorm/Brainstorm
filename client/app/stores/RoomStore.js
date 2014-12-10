@@ -27,7 +27,10 @@ app.RoomStore = _.extend({}, EventEmitter.prototype, {
     })
     .done(function(room) {
       this._rooms.push(room);
-      this.emitChange();
+      app.PageActions.navigate({
+        dest: 'rooms',
+        props: room._id
+      });
     }.bind(this))
     .fail(function(error) {
       console.log(error);
