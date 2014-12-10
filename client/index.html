@@ -104,11 +104,6 @@
       React.createElement(app.BrainstormApp, null),
       document.getElementById('main')
     );
-
-    var socket = io.connect(window.location.origin);
-    socket.on('messages', function(data) {
-      console.log(data);
-    });
   </script>
 </body>
 </html>
