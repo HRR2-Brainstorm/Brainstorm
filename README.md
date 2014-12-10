@@ -2,9 +2,17 @@
 Brainstorm
 ==========
 
-brainstorming app
+HR-Brainstorming app
 
-##Getting Started
+This app is built to make the process of brainstorming and idea sharing within Hack Reactor easier
+
+It leverages React, Flux, and Socket.io to create a truly seamless user and responsive user experience
+
+##Interested in Contributing?
+
+Please review [CONTRIBUTING.md](CONTRIBUTING.md)
+
+###App Gulp Tasks
 
 serve index.js with nodemon (page will reload on server and client files changes)
 
@@ -20,7 +28,7 @@ run server side tests one time
 
 set up automatic jsx compiling on save:
 
-first install react tools (if you have not already may need to run as sudo)
+first install react tools if you have not already (may need to run as sudo)
 
 `npm install -g react-tools`
 
