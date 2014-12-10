@@ -39,10 +39,12 @@ app.Idea = React.createClass({
     return (
       <div>
         <h3 ref="body">{this.props.name}</h3>
-        {editForm}
-        <button className="button-small pure-button pure-button-primary" onClick={this.edit}>{ this.state.editing ? 'Cancel' : 'Edit Idea'}</button>
-        <button className="button-small pure-button pure-button-primary" onClick={this.delete}>Delete Idea</button>
-        <button className="button-small pure-button pure-button-primary" onClick={this.addInterest}>Watch</button>
+        <form className="pure-form" >
+          {editForm}
+          <button className="button-small pure-button pure-button-primary" onClick={this.edit}>{ this.state.editing ? 'Cancel' : 'Edit Idea'}</button>
+          <button className="button-small pure-button pure-button-primary" onClick={this.delete}>Delete Idea</button>
+          <button className="button-small pure-button pure-button-primary" onClick={this.addInterest}>Watch</button>
+        </form>
       </div>
     );
   },
