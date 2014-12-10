@@ -17,6 +17,11 @@ app.RoomStore = _.extend({}, EventEmitter.prototype, {
     .fail(function(error) {
       console.log(error);
     });
+
+    socket.on('room-change', function(currentRooms) {
+      this._rooms = currentRooms;
+      this.emitChange();
+    }.bind(this));
   },
 
   create: function(name) {
@@ -27,6 +32,11 @@ app.RoomStore = _.extend({}, EventEmitter.prototype, {
     })
     .done(function(room) {
       this._rooms.push(room);
+
+      // broadcast that _rooms has changed
+      socket.emit('room-change', this._rooms);
+      this.emitChange();
+
       app.PageActions.navigate({
         dest: 'rooms',
         props: room._id
