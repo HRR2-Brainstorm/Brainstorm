@@ -4,7 +4,7 @@ app.InterestStore = _.extend({}, EventEmitter.prototype, {
   add: function(ideaId) {
     $.ajax({
       type: 'POST',
-      url: '/interests',
+      url: '/interest',
       data: {ideaId: ideaId}
     })
     .done(function(idea) {

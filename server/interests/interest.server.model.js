@@ -3,7 +3,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var InterestsSchema = new Schema({
+var InterestSchema = new Schema({
   idea: {
     type: Schema.ObjectId,
     ref: 'Idea'
@@ -14,4 +14,4 @@ var InterestsSchema = new Schema({
   }
 });
 
-module.exports = mongoose.model('Interests', InterestsSchema);
+module.exports = mongoose.model('Interest', InterestSchema);

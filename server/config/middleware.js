@@ -5,7 +5,7 @@ module.exports = function(app, express) {
   var ideaRouter = express.Router();
   var roomRouter = express.Router();
   var userRouter = express.Router();
-  var interestsRouter = express.Router();
+  var interestRouter = express.Router();
 
   app.use(morgan('dev'));
   // Returns middleware that only parses urlencoded bodies
@@ -21,10 +21,10 @@ module.exports = function(app, express) {
   app.use('/ideas', ideaRouter);
   app.use('/rooms', roomRouter);
   app.use('/users', userRouter);
-  app.use('/interests', interestsRouter);
+  app.use('/interest', interestRouter);
 
   require('../ideas/ideaRoutes.js')(ideaRouter);
   require('../rooms/roomRoutes.js')(roomRouter);
   require('../users/userRoutes.js')(userRouter);
-  require('../interests/interestsRoutes.js')(interestsRouter);
+  require('../interests/interestRoutes.js')(interestRouter);
 };

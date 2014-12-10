@@ -1,4 +1,4 @@
-var Interests = require('./interests.server.model.js');
+var Interest = require('./interest.server.model.js');
 var Q = require('q');
 
 module.exports = {
@@ -7,7 +7,7 @@ module.exports = {
     interest.idea = req.body.ideaId;
     interest.user = req.user._id;
 
-    var addInterest = Q.nbind(Interests.create, Interests);
+    var addInterest = Q.nbind(Interest.create, Interest);
 
     addInterest(interest)
       .then(function (addedInterest) {
