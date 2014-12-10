@@ -17,7 +17,7 @@ app.Ideas = React.createClass({
   render: function() {
     var ideas = [];
     this.state.ideas.forEach(function(idea) {
-      ideas.push(<app.Idea name={idea.name} key={idea._id} />);
+      ideas.push(<app.Idea name={idea.name} key={idea._id} _id={idea._id}/>);
     });
     return (
       <div>
