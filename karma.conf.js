@@ -22,6 +22,7 @@ module.exports = function(config) {
     'client/lib/underscore/underscore.js',
     'client/lib/jquery/dist/jquery.js',
     'client/lib/page/page.js',
+    'client/lib/socket.io-client/socket.io.js',
 
     //app code
     'client/app/app.js',

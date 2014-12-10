@@ -3,7 +3,7 @@ describe('Comments', function () {
   var TestUtils, Comments, CommentStoreHolder, mockComments;
 
   beforeEach(function () {
-    mockComments = [{},{},{}];
+    mockComments = [ {}, {}, {} ];
     TestUtils = React.addons.TestUtils;
 
     CommentStoreHolder = {};
@@ -34,11 +34,11 @@ describe('Comments', function () {
     expect(comments.refs.body).to.be.ok();
   });
 
-  it('should get loaded comments', function () {
+  xit('should get loaded comments', function () {
     expect(comments.state.comments).to.equal(mockComments);
   });
 
-  it('should update its state when the CommentStore changes', function () {
+  xit('should update its state when the CommentStore changes', function () {
 
     app.CommentActions.create(0, 'test');
     var stateComments = comments.state.comments;
