@@ -10,7 +10,9 @@ app.Room = React.createClass({
 
   render: function() {
     return (
-      <h3><a href="#" onClick={this.gotoRoom}>{this.props.name}</a></h3>
+      <div className="room pure-u-1">
+          <a href="#" onClick={this.gotoRoom}>{this.props.name}</a>
+      </div>
     );
   }
 });

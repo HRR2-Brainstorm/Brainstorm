@@ -9,9 +9,14 @@ app.PageNav = React.createClass({
 
   render:function(){
     return (
-      <div ref="body">
-        <button ref="welcome" onClick={this.handleWelcome}>Home</button>
-      </div>
+      <header className="pure-g" ref="body">
+        <div className="pure-u-1-2">
+          <button className="pure-button" ref="welcome" onClick={this.handleWelcome}>Home</button>
+        </div>
+        <div className="login pure-u-1-2">
+          <app.User />
+        </div>
+      </header>
     );
   }
 
