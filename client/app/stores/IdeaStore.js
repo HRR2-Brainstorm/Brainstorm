@@ -11,6 +11,26 @@ app.IdeaStore = _.extend({}, EventEmitter.prototype, {
     return this._ideas;
   },
 
+  get: function (room_id) {
+    $.ajax({
+      type: 'GET',
+      url: '/ideas/' + room_id,
+    })
+    .done(function (ideas) {
+      this._ideas = ideas;
+      // broadcast that _ideas has changed
+      this.emitChange();
+    }.bind(this))
+    .fail(function(error) {
+      console.error(error);
+    });
+
+    socket.on('idea-change', function(currentIdeas) {
+      this._ideas = currentIdeas;
+      this.emitChange();
+    }.bind(this));
+  },
+
   all: function () {
     $.ajax({
       type: 'GET',
@@ -31,10 +51,10 @@ app.IdeaStore = _.extend({}, EventEmitter.prototype, {
     }.bind(this));
   },
 
-  create: function (name) {
+  create: function (room_id, name) {
     $.ajax({
       type: 'POST',
-      url: '/ideas',
+      url: '/ideas/' + room_id,
       data: {name: name}
     })
     .done(function (idea) {
@@ -119,7 +139,7 @@ app.AppDispatcher.register(function (payload) {
       name = action.name.trim();
 
       if (name !== '') {
-        app.IdeaStore.create(name);
+        app.IdeaStore.create(action.room_id, name);
       }
       break;
     case app.IdeaConstants.IDEA_EDIT:
@@ -130,6 +150,11 @@ app.AppDispatcher.register(function (payload) {
     case app.IdeaConstants.IDEA_DELETE:
       if(action.idea.id !== '') {
         app.IdeaStore.delete(action.idea);
+      }
+      break;
+    case app.PageConstants.GETROOMDATA:
+      if (action.room_id){
+        app.IdeaStore.get(action.room_id);
       }
       break;
     default:

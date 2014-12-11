@@ -1,7 +1,8 @@
 app.IdeaActions = {
-  create: function(name) {
+  create: function(room_id, name) {
     app.AppDispatcher.handleViewAction({
       actionType: app.IdeaConstants.IDEA_CREATE,
+      room_id: room_id,
       name: name
     });
   },

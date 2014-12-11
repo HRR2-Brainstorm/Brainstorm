@@ -25,18 +25,6 @@ app.Idea = React.createClass({
     }
   },
 
-  addInterest: function(e){
-    e.preventDefault();
-
-    var ideaId = this.props._id;
-
-    app.InterestActions.add(ideaId);
-
-    // Todo: Change state/class to indicate the interest
-
-    return;
-  },
-
   render: function() {
     var ideaContent;
     var editForm;
@@ -56,15 +44,16 @@ app.Idea = React.createClass({
             </div>
 
             <div className="auth-check pure-u-1-1 pure-u-sm-1-6 watch">
-              <button className="button-small pure-button pure-button-primary" onClick={this.addInterest}>Watch</button>
+              <app.Interest idea_id={this.props._id} />
+            </div>
+            <div className="pure-u-1-1 pure-u-sm-1-6 watch auth-check">
+              <button className="button-small pure-button pure-button-primary" onClick={this.edit}>{ this.state.editing ? 'Cancel' : 'Edit Idea'}</button>
+              <button className="button-small pure-button pure-button-primary" onClick={this.delete}>Delete Idea</button>
             </div>
 
             <app.Comments idea_id={this.props._id} />
           </form>
-          <div className='auth-check'>
-            <button className="button-small pure-button pure-button-primary" onClick={this.edit}>{ this.state.editing ? 'Cancel' : 'Edit'}</button>
-            <button className="button-small pure-button pure-button-primary" onClick={this.delete}>Delete</button>
-          </div>
+
         </div>
       );
     }

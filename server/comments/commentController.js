@@ -1,4 +1,5 @@
 var Comment = require('./comment.server.model.js');
+var Idea = require('../ideas/idea.server.model.js');
 var Q = require('q');
 
 module.exports = {
@@ -7,8 +8,8 @@ module.exports = {
 
     //get comment parameters from request
     comment.name = req.body.name;
-    comment.owner = '5486357eeadcc15b28af33a5';
-    comment.idea = '5487b6bcd45728763106ce12';
+    comment.idea = req.params.idea_id;
+    comment.owner = req.user._id;
     // comment.idea = req.body.ideaId;
     // comment.owner = req.body.userId;
 
@@ -26,16 +27,33 @@ module.exports = {
   },
 
   allComments: function (req, res, next) {
-    var getComments = Q.nbind(Comment.find, Comment);
-    getComments({})
-    .then(function (allComments) {
-      if (allComments) {
-        res.json(allComments);
-      }
-    })
-    .fail(function (error) {
-      next(error);
-    });
+    var getIdeas = Q.nbind(Idea.find, Idea);
+    var query = req.params.room_id ? { room: req.params.room_id } : {};
+
+    // get all ideas
+    getIdeas(query)
+      .then(function(allIdeas) {
+        // if there are ideas send them in response
+        if(allIdeas) {
+          var getComments = Q.nbind(Comment.find, Comment);
+          var query = [];
+          allIdeas.forEach(function (idea) {
+            query.push({ idea: idea._id});
+          });
+          getComments(query)
+            .then(function (allComments) {
+              if (allComments) {
+                res.json(allComments);
+              }
+            })
+            .fail(function (error) {
+              next(error);
+            });
+        }
+      })
+      .fail(function(error) {
+        next(error);
+      });
   },
 
   editComment: function (req, res, next) {

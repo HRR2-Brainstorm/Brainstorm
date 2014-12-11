@@ -12,7 +12,6 @@ app.Ideas = React.createClass({
       }
     }.bind(this));
     // get all ideas from db
-    app.IdeaStore.all();
   },
 
   render: function() {
