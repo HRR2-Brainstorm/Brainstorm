@@ -16,7 +16,9 @@ app.Comments = React.createClass({
     }.bind(this));
   },
 
-  show: function () {
+  show: function (e) {
+    e.preventDefault();
+
     if (this.isMounted()) {
       this.setState({ displaying: !this.state.displaying });
     }

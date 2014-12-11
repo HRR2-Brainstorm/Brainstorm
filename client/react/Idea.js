@@ -46,12 +46,12 @@ app.Idea = React.createClass({
             <div className="auth-check pure-u-1-1 pure-u-sm-1-3 watch">
               <app.Interest idea_id={this.props._id} />
             </div>
-            <div className="pure-u-1-1">
+            <div className="pure-u-1-1 auth-check">
               <button className="button-small pure-button pure-button-primary" onClick={this.edit}>{ this.state.editing ? 'Cancel' : 'Edit Idea'}</button>
               <button className="button-small pure-button pure-button-primary" onClick={this.delete}>Delete Idea</button>
             </div>
 
-            <div className="pure-u-1-1 comments">
+            <div className="pure-u-1-1 auth-check comments">
               <app.Comments idea_id={this.props._id} />
             </div>
 
