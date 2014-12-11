@@ -21,7 +21,8 @@ app.Interest = React.createClass({
     };
   },
 
-  handleClick: function () {
+  handleClick: function (e) {
+    e.preventDefault();
     if (this._liked){
       app.InterestActions.delete(this._liked);
     } else {
