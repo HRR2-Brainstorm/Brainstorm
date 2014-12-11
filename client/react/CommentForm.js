@@ -20,7 +20,7 @@ app.CommentForm = React.createClass({
 
   render: function () {
     return (
-      <form className="pure-form" ref="body" onSubmit={this.handleSubmit}>
+      <form className="auth-check pure-form" ref="body" onSubmit={this.handleSubmit}>
         <input type="text" ref="input" placeholder="Comment" />
         <button className="button-small pure-button pure-button-primary" type="submit" ref="submit">{this.props.editing ? 'Edit Comment' : 'Create Comment'}</button>
       </form>
