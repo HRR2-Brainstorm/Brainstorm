@@ -1,9 +1,18 @@
 app.BrainstormApp = React.createClass({
   getInitialState: function() {
-    return { indexView: true };
+    return {
+      indexView: true,
+      currentUser: app.UserStore.get()
+    };
   },
 
   componentDidMount: function () {
+    app.UserStore.addChangeListener(function() {
+      if(this.isMounted()) {
+        this.setState({ currentUser: app.UserStore.get() });
+      }
+    }.bind(this));
+
     app.CommentStore.all();
 
     app.PageStore.addChangeListener(function(){
@@ -40,7 +49,7 @@ app.BrainstormApp = React.createClass({
     }
 
     return (
-      <div>
+      <div className={'user-' + !!this.state.currentUser} >
         <app.PageNav />
         { currentView }
       </div>
