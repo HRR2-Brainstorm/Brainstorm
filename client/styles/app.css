@@ -65,11 +65,30 @@ input.postfix {
 }
 
 .idea {
-  margin-top:0.5em;
+  margin-top:1.5em;
+  border-bottom:1px solid #f2f2f2;
+  padding-bottom:1.5em;
+}
+
+.controls {
+  margin-bottom:1em;
+}
+
+.controls .pure-button {
+  margin-right:0.5em;
+  font-size:85%;
 }
 
 .watch {
   text-align:right;
+}
+
+.formComment {
+  margin-top:0.5em;
+}
+
+.formEditComment .pure-button {
+  font-size:85%;
 }
 
 @media screen and (min-width: 35.5em) {

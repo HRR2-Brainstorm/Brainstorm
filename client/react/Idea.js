@@ -38,7 +38,7 @@ app.Idea = React.createClass({
         <div className="idea">
 
           <form className="pure-form pure-g">
-            <div className="pure-u-1-1 pure-u-sm-5-6">
+            <div className="pure-u-1-1 pure-u-sm-2-3">
               <h3 ref="body">{this.props.name}</h3>
               {editForm}
             </div>
@@ -61,7 +61,6 @@ app.Idea = React.createClass({
     return (
       <div>
         {ideaContent}
-        <button className="pure-button" onClick={this.show}>{ this.state.displaying ? 'Hide' : 'Show' } Idea</button>
       </div>
     );
   },
