@@ -42,9 +42,9 @@ app.Interest = React.createClass({
   render: function () {
     var interestCount = this.state.interests.length;
     return (
-      <div ref="body">
-        <button onClick={this.handleClick}>{this._liked ? 'UnLike' : 'Like'}</button>
-        <span>Likes: {interestCount}</span>
+      <div className="likes" ref="body">
+        <button className="button-small pure-button" onClick={this.handleClick}>{this._liked ? 'UnLike' : 'Like'}</button>
+        <span>&nbsp;{interestCount} Likes</span>
       </div>
     );
   }

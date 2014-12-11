@@ -39,7 +39,7 @@ app.Comments = React.createClass({
       });
     }
 
-    showCommentsButton = <button onClick={this.show}>{this.state.displaying? 'Hide' : 'Show'} Comments</button>
+    showCommentsButton = <button className="pure-button" onClick={this.show}>{this.state.displaying? 'Hide' : 'Show'} Comments</button>
 
     return (
       <div ref="body">

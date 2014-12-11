@@ -65,11 +65,54 @@ input.postfix {
 }
 
 .idea {
-  margin-top:0.5em;
+  margin-top:1.5em;
+  border-bottom:1px solid #f2f2f2;
+  padding-bottom:1.5em;
+}
+
+.controls {
+  margin-bottom:1em;
+}
+
+.controls .pure-button {
+  margin-right:0.5em;
+  font-size:85%;
 }
 
 .watch {
   text-align:right;
+}
+
+h2 {
+  margin-top:0;
+}
+
+.likes {
+  margin-top:0.5em;
+}
+
+.likes .pure-button {
+  font-size:75%;
+}
+
+.comments {
+  margin-top:0.5em;
+}
+
+.comments > div > .pure-button {
+  margin-left:0 !important;
+}
+
+.formComment {
+  margin-top:2em;
+}
+
+.formComment .pure-button {
+
+}
+
+.formEditComment {
+  font-size:85%;
 }
 
 @media screen and (min-width: 35.5em) {
