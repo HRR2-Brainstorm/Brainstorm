@@ -20,7 +20,7 @@ app.Rooms = React.createClass({
       rooms.push(<app.Room name={room.name} key={room._id} _id={room._id} />);
     });
     return (
-      <div>
+      <div className="rooms">
         { rooms }
       </div>
     );

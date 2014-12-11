@@ -26,13 +26,12 @@ app.BrainstormApp = React.createClass({
     var currentView;
     if(this.state.indexView) { //thisIsHomePage
       currentView = <div>
-        <app.User />
         <app.CreateRoom />
         <app.Rooms />
       </div>
     } else { // must be a room
       currentView = <div>
-
+        <app.RoomNavModal roomId='0' />
         <app.CreateIdea />
         <app.Ideas room_id={this.state.props}/>
         <app.CreateComment />
@@ -43,7 +42,6 @@ app.BrainstormApp = React.createClass({
     return (
       <div>
         <app.PageNav />
-        <app.RoomNavModal roomId='0' />
         { currentView }
       </div>
     );

@@ -4,12 +4,24 @@ body {
 }
 
 body {
-  padding:0 1em;
+  padding:2em 1em;
 }
 
 #main {
   max-width:1060px;
   margin:0 auto;
+}
+
+header {
+  margin:0 0 2em 0;
+}
+
+.user-false .auth-check {
+  display: none;
+}
+
+div.login {
+  text-align:right;
 }
 
 form .pure-button:not(:first-of-type) {
@@ -18,4 +30,66 @@ form .pure-button:not(:first-of-type) {
 
 form .pure-button:last-of-type {
   margin-left:1em;
+}
+
+input.postfix {
+  margin-bottom:0.5em;
+}
+
+.pure-button.no-margin {
+  margin-left:0 !important;
+}
+
+.rooms {
+  margin-top:2em;
+}
+
+.room {
+  margin:0 0 0.5em 0;
+}
+
+.room a {
+  display:block;
+  line-height:1.2em;
+  padding:1em 0.3em 1em 1em;
+  background-color: #f2f2f2;
+  text-align:left;
+  height:100%;
+
+  text-decoration:none;
+}
+
+.room a:hover {
+  background-color:#f2f2f2;
+  text-decoration:underline;
+}
+
+.idea {
+  margin-top:0.5em;
+}
+
+.watch {
+  text-align:right;
+}
+
+@media screen and (min-width: 35.5em) {
+
+  input.postfix {
+    margin-bottom:0;
+    -webkit-border-top-right-radius: 0px !important;
+    -webkit-border-bottom-right-radius: 0px !important;
+    -moz-border-radius-topright: 0px !important;
+    -moz-border-radius-bottomright: 0px !important;
+    border-top-right-radius: 0px !important;
+    border-bottom-right-radius: 0px !important;
+  }
+
+  .pure-button.no-margin {
+    -webkit-border-top-left-radius: 0px !important;
+    -webkit-border-bottom-left-radius: 0px !important;
+    -moz-border-radius-topleft: 0px !important;
+    -moz-border-radius-bottomleft: 0px !important;
+    border-top-left-radius: 0px !important;
+    border-bottom-left-radius: 0px !important;
+  }
 }
