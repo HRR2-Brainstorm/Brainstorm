@@ -83,11 +83,35 @@ input.postfix {
   text-align:right;
 }
 
-.formComment {
+h2 {
+  margin-top:0;
+}
+
+.likes {
   margin-top:0.5em;
 }
 
-.formEditComment .pure-button {
+.likes .pure-button {
+  font-size:75%;
+}
+
+.comments {
+  margin-top:0.5em;
+}
+
+.comments > div > .pure-button {
+  margin-left:0 !important;
+}
+
+.formComment {
+  margin-top:2em;
+}
+
+.formComment .pure-button {
+
+}
+
+.formEditComment {
   font-size:85%;
 }
 
