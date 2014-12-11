@@ -63,6 +63,7 @@ app.Idea = React.createClass({
     return (
       <div>
         {ideaContent}
+        <button className="pure-button" onClick={this.show}>{ this.state.displaying ? 'Hide' : 'Show' } Idea</button>
       </div>
     );
   },
