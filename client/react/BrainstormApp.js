@@ -46,6 +46,7 @@ app.BrainstormApp = React.createClass({
     } else { // must be a room
       currentView = (
         <div>
+          <app.RoomTitle room_id={this.state.props}/>
           <app.CreateIdea room_id={this.state.props}/>
           <app.Ideas room_id={this.state.props}/>
         </div>
