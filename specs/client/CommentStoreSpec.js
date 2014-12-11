@@ -27,7 +27,7 @@ describe('CommentStore', function(){
     expect(mockResult.url).to.equal('/comments');
   });
 
-  it('should perform an ajax request to post a comment', function () {
+  xit('should perform an ajax request to post a comment', function () {
     mockIdea_id = 0;
     mockComment = 'testcomment';
     app.CommentActions.create(mockIdea_id, mockComment);
@@ -36,7 +36,7 @@ describe('CommentStore', function(){
     expect(mockResult.data.name).to.equal(mockComment);
   });
 
-  it('should perform an ajax request to edit a comment', function () {
+  xit('should perform an ajax request to edit a comment', function () {
     mockComment = 'updatedcomment';
     var _id = 0;
     app.CommentActions.edit(_id, mockComment);
@@ -45,14 +45,14 @@ describe('CommentStore', function(){
     expect(mockResult.data.name).to.equal(mockComment);
   });
 
-  it('should perform an ajax request to delete a comment', function () {
+  xit('should perform an ajax request to delete a comment', function () {
     var _id = 0;
     app.CommentActions.delete(_id);
     expect(mockResult.type).to.equal('DELETE');
     expect(mockResult.url).to.equal('/comments/0');
   });
 
-  it('should emit events after comment AJAX requests complete', function(){
+  xit('should emit events after comment AJAX requests complete', function(){
     var callcount = 0;
     var callback = function(){callcount++;};
 
